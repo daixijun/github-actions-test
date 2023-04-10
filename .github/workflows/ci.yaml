@@ -30,11 +30,9 @@ jobs:
       #     version: ${{ env.version }}
 
       - name: Print Version
-        env:
-          tags: ${{ fromJSON(matrix.tags) }}
         run: |
           echo "version: ${{ matrix.version }}"
-          echo "tags: ${tags[@]}"
+          echo "tags: ${{ matrix.tags[0] }}"
           # echo "env version: ${{ env.version }} "
           # echo "version: ${{ steps.semver.outputs.version }}"
           # echo "major: ${{ steps.semver.outputs.major }}"
