@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Print matrix
-        run: echo ${{ matrix.include }}
+        run: echo ${{ matrix.include.tag }}
 
       # - name: Set up QEMU
       #   uses: docker/setup-qemu-action@v2
