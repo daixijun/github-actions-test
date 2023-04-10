@@ -31,7 +31,7 @@ jobs:
 
       - name: Print Version
         env:
-          tags: ${{ matrix.tags }}
+          tags: ${{ fromJSON(matrix.tags) }}
         run: |
           echo "version: ${{ matrix.version }}"
           echo "tags: ${tags[@]}"
