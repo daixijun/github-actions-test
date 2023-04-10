@@ -8,31 +8,38 @@ on:
       - .github/workflows/ci.yaml
   workflow_dispatch:
 
-env:
-  version: 11.6
-
 jobs:
   CI:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - version: 11.6
+            tags: [11.6, 11, latest]
+          - version: 10.3
+            tags: [10.3, 10]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Semver Parse
-        uses: apexskier/github-semver-parse@v1
-        id: semver
-        with:
-          version: ${{ env.version }}
+      # - name: Semver Parse
+      #   uses: apexskier/github-semver-parse@v1
+      #   id: semver
+      #   with:
+      #     version: ${{ env.version }}
 
       - name: Print Version
         run: |
-          echo "env version: ${{ env.version }} "
-          echo "version: ${{ steps.semver.outputs.version }}"
-          echo "major: ${{ steps.semver.outputs.major }}"
-          echo "minor: ${{ steps.semver.outputs.minor }}"
-          echo "patch: ${{ steps.semver.outputs.patch }}"
-          echo "prerelease: ${{ steps.semver.outputs.prerelease }}"
-          echo "build: ${{ steps.semver.outputs.build }}"
+          echo "version: ${{ matrix.version }}"
+          echo "tags: ${{ matrix.tags }}"
+          # echo "env version: ${{ env.version }} "
+          # echo "version: ${{ steps.semver.outputs.version }}"
+          # echo "major: ${{ steps.semver.outputs.major }}"
+          # echo "minor: ${{ steps.semver.outputs.minor }}"
+          # echo "patch: ${{ steps.semver.outputs.patch }}"
+          # echo "prerelease: ${{ steps.semver.outputs.prerelease }}"
+          # echo "build: ${{ steps.semver.outputs.build }}"
 
       # - name: Docker Metadata
       #   id: meta
