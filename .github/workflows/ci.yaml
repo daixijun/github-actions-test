@@ -40,7 +40,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: "./debian"
+          context: "{{defaultContext}}:debian"
           file: ./Dockerfile
           push: false
           tags: ${{ steps.meta.outputs.tags }}
