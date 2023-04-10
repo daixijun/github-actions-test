@@ -32,7 +32,9 @@ jobs:
       - name: Print Version
         run: |
           echo "version: ${{ matrix.version }}"
-          echo "tags: ${{ matrix.tags[0] }}"
+          for tag in ${{ matrix.tags }}; do
+            echo "tag: $tag"
+          done
           # echo "env version: ${{ env.version }} "
           # echo "version: ${{ steps.semver.outputs.version }}"
           # echo "major: ${{ steps.semver.outputs.major }}"
