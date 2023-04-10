@@ -14,12 +14,17 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        tags: ["latest", "v1.0.0"]
+        include:
+          - tag: v1.0.0
+            alas:
+              - v1.0
+              - v1
+              - latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Print matrix
-        run: echo ${{ matrix.tags }}
+        run: echo ${{ matrix.include }}
 
       # - name: Set up QEMU
       #   uses: docker/setup-qemu-action@v2
