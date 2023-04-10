@@ -5,6 +5,8 @@ on:
       - main
     tags:
       - debian/*
+    paths:
+      - debian/**
   pull_request:
     branches:
       - main
