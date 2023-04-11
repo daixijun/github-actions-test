@@ -1,15 +1,15 @@
 name: Debian
 
 env:
-  name: debian
+  IMAGE_NAME: debian
 
 on:
   push:
     branches:
       - main
     paths:
-      - "${{ env.name }}/**"
-      - ".github/workflows/${{ env.name }}.yaml"
+      - "debian/**"
+      - ".github/workflows/debian.yaml"
   workflow_dispatch:
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/${{ env.name }}
+            ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ matrix.version }}
             type=raw,value=${{ steps.semver.outputs.major }}
@@ -63,7 +63,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: "{{defaultContext}}:${{ env.name }}"
+          context: "{{defaultContext}}:${{ env.IMAGE_NAME }}"
           push: true
           build-args: |
             VERSION=${{ matrix.version }}
