@@ -1,8 +1,5 @@
 name: Debian
 
-env:
-  IMAGE_NAME: debian
-
 on:
   push:
     branches:
@@ -11,6 +8,12 @@ on:
       - "debian/**"
       - ".github/workflows/debian.yaml"
   workflow_dispatch:
+
+permissions:
+  packages: write
+
+env:
+  IMAGE_NAME: debian
 
 jobs:
   CI:
