@@ -50,7 +50,7 @@ jobs:
           tags: |
             type=raw,value=${{ matrix.version }}
             type=raw,value=${{ steps.semver.outputs.major }}
-            type=raw,value=latest,enable=${{ matrix.latest }}
+            type=raw,value=latest,enable=${{ matrix.latest == "true" }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
