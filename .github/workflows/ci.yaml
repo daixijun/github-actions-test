@@ -21,11 +21,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set Version
+        run: |
+          npm install -g semver
+          version=$(semver --coerce ${{ matrix.version }})
+          echo "version=${version}" >> $GITHUB_ENV
+
       - name: Semver Parse
         uses: terradatum/semver-action@main
         id: semver
         with:
-          version: ${{ matrix.version }}
+          version: ${{ env.version }}
 
       # - name: Semver Parse
       #   uses: apexskier/github-semver-parse@v1
