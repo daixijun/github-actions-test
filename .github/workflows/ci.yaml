@@ -16,7 +16,6 @@ jobs:
       matrix:
         include:
           - version: 11.6
-            latest: true
           - version: 10.3
     steps:
       - name: Checkout
@@ -50,7 +49,6 @@ jobs:
           tags: |
             type=raw,value=${{ matrix.version }}
             type=raw,value=${{ steps.semver.outputs.major }}
-            type=raw,value=latest,enable=${{ matrix.latest == "true" }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
