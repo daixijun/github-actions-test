@@ -64,7 +64,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: "{{defaultContext}}:debian"
-          push: false
+          push: true
           build-args: |
             VERSION=${{ matrix.version }}
           tags: ${{ steps.meta.outputs.tags }}
