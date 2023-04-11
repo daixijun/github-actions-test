@@ -1,11 +1,11 @@
-name: CI
+name: Debian
 on:
   push:
     branches:
       - main
     paths:
       - debian/**
-      - .github/workflows/ci.yaml
+      - .github/workflows/debian.yaml
   workflow_dispatch:
 
 jobs:
