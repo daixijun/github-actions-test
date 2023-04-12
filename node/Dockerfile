@@ -6,8 +6,7 @@ LABEL maintainer="www.verystar.net"
 
 ENV PNPM_DIR="${HOME}/.local/share/pnpm"
 ENV PATH "$PNPM_DIR:$PATH"
-ENV NPM_CONFIG_REGISTRY=https://registry.npmmirror.com \
-    ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ \
+ENV ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ \
     ELECTRON_CUSTOM_DIR="{{ version }}" \
     ELECTRON_SKIP_BINARY_DOWNLOAD=1 \
     NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node \
@@ -22,6 +21,8 @@ ENV NPM_CONFIG_REGISTRY=https://registry.npmmirror.com \
     NODE_INSPECTOR_CDNURL=https://npmmirror.com/mirrors/node-inspector
 
 RUN npm install -g pnpm cnpm webpack-dev-server \
+    && npm config set -g registry=https://registry.npmmirror.com \
+    && yarn config set -g registry=https://registry.npmmirror.com \
     && mkdir ~/.ssh \
     && chmod 700 ~/.ssh \
     && echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config
