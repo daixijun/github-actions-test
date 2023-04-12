@@ -21,8 +21,8 @@ ENV ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ \
     NODE_INSPECTOR_CDNURL=https://npmmirror.com/mirrors/node-inspector
 
 RUN npm install -g pnpm cnpm webpack-dev-server \
-    && npm config set -g registry=https://registry.npmmirror.com \
-    && yarn config set -g registry=https://registry.npmmirror.com \
+    && npm config set -g registry https://registry.npmmirror.com \
+    && yarn config set -g registry https://registry.npmmirror.com \
     && mkdir ~/.ssh \
     && chmod 700 ~/.ssh \
     && echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config
